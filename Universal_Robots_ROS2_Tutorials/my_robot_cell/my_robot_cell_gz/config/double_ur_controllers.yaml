@@ -1,0 +1,215 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 500  # Hz
+    
+    # Global joint state broadcaster (publishes all joint states)
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    
+    # Robot 1 Controllers
+    robot1_io_and_status_controller:
+      type: ur_controllers/GPIOController
+    
+    robot1_speed_scaling_state_broadcaster:
+      type: ur_controllers/SpeedScalingStateBroadcaster
+    
+    robot1_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    
+    robot1_scaled_joint_trajectory_controller:
+      type: ur_controllers/ScaledJointTrajectoryController
+    
+    robot1_forward_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+    
+    robot1_forward_position_controller:
+      type: position_controllers/JointGroupPositionController
+    
+    # Robot 2 Controllers
+    robot2_io_and_status_controller:
+      type: ur_controllers/GPIOController
+    
+    robot2_speed_scaling_state_broadcaster:
+      type: ur_controllers/SpeedScalingStateBroadcaster
+    
+    robot2_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    
+    robot2_scaled_joint_trajectory_controller:
+      type: ur_controllers/ScaledJointTrajectoryController
+    
+    robot2_forward_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+    
+    robot2_forward_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+# Robot 1 Speed Scaling State Broadcaster
+robot1_speed_scaling_state_broadcaster:
+  ros__parameters:
+    state_publish_rate: 100.0
+
+# Robot 1 Joint Trajectory Controller
+robot1_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot1_ur10e_shoulder_pan_joint
+      - robot1_ur10e_shoulder_lift_joint
+      - robot1_ur10e_elbow_joint
+      - robot1_ur10e_wrist_1_joint
+      - robot1_ur10e_wrist_2_joint
+      - robot1_ur10e_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      robot1_ur10e_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+# Robot 1 Scaled Joint Trajectory Controller
+robot1_scaled_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot1_ur10e_shoulder_pan_joint
+      - robot1_ur10e_shoulder_lift_joint
+      - robot1_ur10e_elbow_joint
+      - robot1_ur10e_wrist_1_joint
+      - robot1_ur10e_wrist_2_joint
+      - robot1_ur10e_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    speed_scaling_interface_name: ""
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      robot1_ur10e_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      robot1_ur10e_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+# Robot 1 Forward Velocity Controller
+robot1_forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - robot1_ur10e_shoulder_pan_joint
+      - robot1_ur10e_shoulder_lift_joint
+      - robot1_ur10e_elbow_joint
+      - robot1_ur10e_wrist_1_joint
+      - robot1_ur10e_wrist_2_joint
+      - robot1_ur10e_wrist_3_joint
+    interface_name: velocity
+
+# Robot 1 Forward Position Controller
+robot1_forward_position_controller:
+  ros__parameters:
+    joints:
+      - robot1_ur10e_shoulder_pan_joint
+      - robot1_ur10e_shoulder_lift_joint
+      - robot1_ur10e_elbow_joint
+      - robot1_ur10e_wrist_1_joint
+      - robot1_ur10e_wrist_2_joint
+      - robot1_ur10e_wrist_3_joint
+
+# Robot 2 Speed Scaling State Broadcaster
+robot2_speed_scaling_state_broadcaster:
+  ros__parameters:
+    state_publish_rate: 100.0
+
+# Robot 2 Joint Trajectory Controller
+robot2_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot2_ur10e_shoulder_pan_joint
+      - robot2_ur10e_shoulder_lift_joint
+      - robot2_ur10e_elbow_joint
+      - robot2_ur10e_wrist_1_joint
+      - robot2_ur10e_wrist_2_joint
+      - robot2_ur10e_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      robot2_ur10e_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+# Robot 2 Scaled Joint Trajectory Controller
+robot2_scaled_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot2_ur10e_shoulder_pan_joint
+      - robot2_ur10e_shoulder_lift_joint
+      - robot2_ur10e_elbow_joint
+      - robot2_ur10e_wrist_1_joint
+      - robot2_ur10e_wrist_2_joint
+      - robot2_ur10e_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    speed_scaling_interface_name: ""
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      robot2_ur10e_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      robot2_ur10e_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+# Robot 2 Forward Velocity Controller
+robot2_forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - robot2_ur10e_shoulder_pan_joint
+      - robot2_ur10e_shoulder_lift_joint
+      - robot2_ur10e_elbow_joint
+      - robot2_ur10e_wrist_1_joint
+      - robot2_ur10e_wrist_2_joint
+      - robot2_ur10e_wrist_3_joint
+    interface_name: velocity
+
+# Robot 2 Forward Position Controller
+robot2_forward_position_controller:
+  ros__parameters:
+    joints:
+      - robot2_ur10e_shoulder_pan_joint
+      - robot2_ur10e_shoulder_lift_joint
+      - robot2_ur10e_elbow_joint
+      - robot2_ur10e_wrist_1_joint
+      - robot2_ur10e_wrist_2_joint
+      - robot2_ur10e_wrist_3_joint
